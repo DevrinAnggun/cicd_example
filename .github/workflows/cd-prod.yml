@@ -1,4 +1,5 @@
 name: CD Example Production
+
 on:
   push:
     branches:
@@ -9,11 +10,10 @@ jobs:
     name: CD Example Production
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout My Code
+      - name: Checkout Code
         uses: actions/checkout@v4
-
       - name: SSH Connect
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
@@ -32,4 +32,4 @@ jobs:
               git clone https://${{ secrets.GIT_USERNAME }}:${{ secrets.GIT_PAT }}@github.com/${{ secrets.GIT_USERNAME }}/cicd_database_example.git .
             fi
 
-            echo "✅ Deployment finished at $(date)"
+            echo "✅ Deployment finished at $(date)"s
